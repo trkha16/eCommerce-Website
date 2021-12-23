@@ -1,35 +1,52 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-	<div class="container px-4 px-lg-5">
-		<a class="navbar-brand" href="#!">Start Bootstrap</a>
-		<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-			data-bs-target="#navbarSupportedContent"
-			aria-controls="navbarSupportedContent" aria-expanded="false"
-			aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
-		<div class="collapse navbar-collapse" id="navbarSupportedContent">
-			<ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-				<li class="nav-item"><a class="nav-link active"
-					aria-current="page" href="#!">Home</a></li>
-				<li class="nav-item"><a class="nav-link" href="#!">About</a></li>
-				<li class="nav-item dropdown"><a
-					class="nav-link dropdown-toggle" id="navbarDropdown" href="#"
-					role="button" data-bs-toggle="dropdown" aria-expanded="false">Shop</a>
-					<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-						<li><a class="dropdown-item" href="#!">All Products</a></li>
-						<li><hr class="dropdown-divider" /></li>
-						<li><a class="dropdown-item" href="#!">Popular Items</a></li>
-						<li><a class="dropdown-item" href="#!">New Arrivals</a></li>
-					</ul></li>
-			</ul>
-			<form class="d-flex">
-				<button class="btn btn-outline-dark" type="submit">
-					<i class="bi-cart-fill me-1"></i> Cart <span
-						class="badge bg-dark text-white ms-1 rounded-pill">0</span>
-				</button>
-			</form>
-		</div>
-	</div>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!--begin of menu-->
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand" href="Home.jsp">Shoes</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse justify-content-end" id="navbarsExampleDefault">
+            <ul class="navbar-nav m-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Manager Account</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Manager Product</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Hello Alias</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Logout</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="Login.jsp">Login</a>
+                </li>
+            </ul>
+
+            <form action="search" method="post" class="form-inline my-2 my-lg-0">
+                <div class="input-group input-group-sm">
+                    <input value="${txtS}" name="txt" type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" placeholder="Search...">
+                    <div class="input-group-append">
+                        <button type="submit" class="btn btn-secondary btn-number">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+                <a class="btn btn-success btn-sm ml-3" href="show">
+                    <i class="fa fa-shopping-cart"></i> Cart
+                    <span class="badge badge-light">3</span>
+                </a>
+            </form>
+        </div>
+    </div>
 </nav>
+<section class="jumbotron text-center">
+    <div class="container">
+        <h1 class="jumbotron-heading">Siêu thị giày chất lượng cao</h1>
+        <p class="lead text-muted mb-0">Uy tín tạo nên thương hiệu với hơn 10 năm cung cấp các sản phầm giày nhập từ Trung Quốc</p>
+    </div>
+</section>
+<!--end of menu-->
