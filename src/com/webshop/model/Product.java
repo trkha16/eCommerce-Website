@@ -5,24 +5,42 @@ public class Product {
 	private String name;
 	private String image;
 	private String description;
-	private String price;
+	private double price;
+	private int cateID;
+	private String title;
+	private int sellID;
 	private int views;
+	
 
-	public Product(int id, String name, String image, String description, String price) {
+	public Product() {
+		super();
+	}
+
+	public Product(int id, String name, String image, String description, double price, int cateID, String title,
+			int sellID, int views) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.image = image;
 		this.description = description;
 		this.price = price;
+		this.cateID = cateID;
+		this.title = title;
+		this.sellID = sellID;
+		this.views = views;
 	}
 
-	public Product(String name, String image, String description, String price) {
+	public Product(String name, String image, String description, double price, int cateID, String title, int sellID,
+			int views) {
 		super();
 		this.name = name;
 		this.image = image;
 		this.description = description;
 		this.price = price;
+		this.cateID = cateID;
+		this.title = title;
+		this.sellID = sellID;
+		this.views = views;
 	}
 
 	public int getId() {
@@ -57,12 +75,36 @@ public class Product {
 		this.description = description;
 	}
 
-	public String getPrice() {
+	public double getPrice() {
 		return price;
 	}
 
-	public void setPrice(String price) {
+	public void setPrice(double price) {
 		this.price = price;
+	}
+
+	public int getCateID() {
+		return cateID;
+	}
+
+	public void setCateID(int cateID) {
+		this.cateID = cateID;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public int getSellID() {
+		return sellID;
+	}
+
+	public void setSellID(int sellID) {
+		this.sellID = sellID;
 	}
 
 	public int getViews() {
