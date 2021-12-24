@@ -20,8 +20,7 @@ public class HomeDao {
 	private static final String SELECT_LAST_PRODUCT = "select * from product.product\r\n" + "order by id desc\r\n"
 			+ "limit 1;";
 	private static final String SELECT_PRODUCT_BY_CID = "select * from product.product\r\n" + "where cateID = ?;";
-	private static final String SELECT_PRODUCT_BY_ID = "select * from product.product\r\n" + 
-			"where id = ?;";
+	private static final String SELECT_PRODUCT_BY_ID = "select * from product.product\r\n" + "where id = ?;";
 
 	// Get all products
 	public List<Product> getAllProducts() {
@@ -37,10 +36,10 @@ public class HomeDao {
 				String image = resultSet.getString("image");
 				String description = resultSet.getString("description");
 				double price = resultSet.getDouble("price");
-				int cateID = 0;
+				int cateID = resultSet.getInt("cateID");
 				String title = resultSet.getString("title");
-				int sellID = 0;
-				int views = 0;
+				int sellID = resultSet.getInt("sell_ID");
+				int views = resultSet.getInt("views");
 				list.add(new Product(id, name, image, description, price, cateID, title, sellID, views));
 			}
 		} catch (Exception e) {
@@ -78,10 +77,10 @@ public class HomeDao {
 				String image = resultSet.getString("image");
 				String description = resultSet.getString("description");
 				double price = resultSet.getDouble("price");
-				int cateID = 0;
+				int cateID = resultSet.getInt("cateID");
 				String title = resultSet.getString("title");
-				int sellID = 0;
-				int views = 0;
+				int sellID = resultSet.getInt("sell_ID");
+				int views = resultSet.getInt("views");
 				return new Product(name, image, description, price, cateID, title, sellID, views);
 			}
 
@@ -100,15 +99,16 @@ public class HomeDao {
 			resultSet = preparedStatement.executeQuery();
 
 			while (resultSet.next()) {
+				int id = resultSet.getInt("id");
 				String name = resultSet.getString("name");
 				String image = resultSet.getString("image");
 				String description = resultSet.getString("description");
 				double price = resultSet.getDouble("price");
-				int cateID = 0;
+				int cateID = resultSet.getInt("cateID");
 				String title = resultSet.getString("title");
-				int sellID = 0;
-				int views = 0;
-				list.add(new Product(name, image, description, price, cateID, title, sellID, views));
+				int sellID = resultSet.getInt("sell_ID");
+				int views = resultSet.getInt("views");
+				list.add(new Product(id, name, image, description, price, cateID, title, sellID, views));
 			}
 		} catch (Exception e) {
 		}
@@ -129,10 +129,10 @@ public class HomeDao {
 				String image = resultSet.getString("image");
 				String description = resultSet.getString("description");
 				double price = resultSet.getDouble("price");
-				int cateID = 0;
+				int cateID = resultSet.getInt("cateID");
 				String title = resultSet.getString("title");
-				int sellID = 0;
-				int views = 0;
+				int sellID = resultSet.getInt("sell_ID");
+				int views = resultSet.getInt("views");
 				return new Product(name, image, description, price, cateID, title, sellID, views);
 			}
 
@@ -144,9 +144,9 @@ public class HomeDao {
 	// main test
 	public static void main(String[] args) {
 		HomeDao dao = new HomeDao();
-		Product list = dao.getLast();
+		Product list = dao.getProductByID("4");
 
-		System.out.println(list.getName());
+		System.out.println(list.getPrice());
 
 	}
 }
