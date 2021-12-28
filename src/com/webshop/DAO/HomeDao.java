@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.security.auth.message.callback.PrivateKeyCallback.Request;
+
 import com.webshop.JDBC.JDBCConnection;
 import com.webshop.model.Category;
 import com.webshop.model.Product;
@@ -21,6 +23,7 @@ public class HomeDao {
 			+ "limit 1;";
 	private static final String SELECT_PRODUCT_BY_CID = "select * from product.product\r\n" + "where cateID = ?;";
 	private static final String SELECT_PRODUCT_BY_ID = "select * from product.product\r\n" + "where id = ?;";
+	private static final String SEARCH_PRODUCTS = "select * from product.product\r\n" + "where name like ?;";
 
 	// Get all products
 	public List<Product> getAllProducts() {
@@ -141,12 +144,35 @@ public class HomeDao {
 		return null;
 	}
 
+	// Search products
+	public List<Product> searchProducts(String txt) {
+		List<Product> list = new ArrayList<>();
+
+		try {
+			preparedStatement = connection.prepareStatement(SEARCH_PRODUCTS);
+			preparedStatement.setString(1, "%" + txt + "%");
+			resultSet = preparedStatement.executeQuery();
+
+			while (resultSet.next()) {
+				int id = resultSet.getInt("id");
+				String name = resultSet.getString("name");
+				String image = resultSet.getString("image");
+				String description = resultSet.getString("description");
+				double price = resultSet.getDouble("price");
+				int cateID = resultSet.getInt("cateID");
+				String title = resultSet.getString("title");
+				int sellID = resultSet.getInt("sell_ID");
+				int views = resultSet.getInt("views");
+				list.add(new Product(id, name, image, description, price, cateID, title, sellID, views));
+			}
+		} catch (Exception e) {
+		}
+
+		return list;
+	}
+
 	// main test
 	public static void main(String[] args) {
-		HomeDao dao = new HomeDao();
-		Product list = dao.getProductByID("4");
-
-		System.out.println(list.getPrice());
 
 	}
 }

@@ -121,8 +121,8 @@ body {
 </head>
 <body>
 	<div class="login-form">
-		<form action="login" method="post">
-			<h2 class="text-center">Login</h2>
+		<form action="register" method="post">
+			<h2 class="text-center">Sign up</h2>
 			<div class="form-group">
 				<input type="text" class="form-control" name="user"
 					placeholder="Username" required="required">
@@ -132,17 +132,20 @@ body {
 					placeholder="Password" required="required">
 			</div>
 			<div class="form-group">
-				<button type="submit" class="btn btn-primary btn-lg btn-block">Sign
-					in</button>
+				<input type="password" class="form-control" name="repass"
+					placeholder="Password" required="required">
 			</div>
-			<div class="bottom-action clearfix">
-				<label class="float-left form-check-label"><input
-					type="checkbox"> Remember me</label> <a href="#"
-					class="float-right">Forgot Password?</a>
+			<div class="form-group">
+				<input type="text" class="form-control" name="name"
+					placeholder="Username" required="required">
+			</div>
+			<div class="form-group">
+				<button type="submit" class="btn btn-primary btn-lg btn-block">Sign
+					up</button>
 			</div>
 		</form>
 		<p class="text-center small">
-			Don't have an account? <a href="Register.jsp">Sign up here!</a>
+			Already have an account? <a href="Login.jsp">Login here!</a>
 		</p>
 	</div>
 </body>

@@ -1,11 +1,14 @@
 package com.webshop.web;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.webshop.DAO.AccountDao;
 import com.webshop.model.Account;
@@ -42,7 +45,7 @@ public class LoginControl extends HttpServlet {
 
 		try {
 			if (accountDao.checkLogin(account)) { // Login thanh cong
-				response.sendRedirect( request.getContextPath() + "/home");
+				response.sendRedirect(request.getContextPath() + "/home");
 			} else {
 				response.sendRedirect("Login.jsp");
 			}
@@ -60,6 +63,22 @@ public class LoginControl extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
+	}
+
+	protected void solve(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		response.setContentType("text/html;charset=UTF-8");
+
+		AccountDao accountDao = new AccountDao();
+		Account account = new Account();
+		String username = request.getParameter("user");
+		String password = request.getParameter("pass");
+		account.setUsername(username);
+		account.setPassword(password);
+
+		boolean check = accountDao.checkLogin(account);
+		HttpSession session = request.getSession();
+		session.setAttribute("acc", check);
 	}
 
 }
