@@ -14,19 +14,23 @@
 		<div class="collapse navbar-collapse justify-content-end"
 			id="navbarsExampleDefault">
 			<ul class="navbar-nav m-auto">
-				<li class="nav-item"><a class="nav-link" href="#">Manager
-						Account</a></li>
-				<li class="nav-item"><a class="nav-link" href="#">Manager
-						Product</a></li>
+				<c:if test="${sessionScope.acc.isAdmin == 1}">
+					<li class="nav-item"><a class="nav-link" href="#">Manager
+							Account</a></li>
+				</c:if>
+				<c:if test="${sessionScope.acc.isSell == 1}">
+					<li class="nav-item"><a class="nav-link" href="#">Manager
+							Product</a></li>
+				</c:if>
 
-				<li class="nav-item"><a class="nav-link" href="#">Hello
-						Alias</a></li>
-				<li class="nav-item"><a class="nav-link" href="#">Logout</a></li>
-
-
-
-				<li class="nav-item"><a class="nav-link" href="Login.jsp">Login</a></li>
-
+				<c:if test="${sessionScope.acc != null}">
+					<li class="nav-item"><a class="nav-link" href="#">Hello
+							${sessionScope.acc.name }</a></li>
+					<li class="nav-item"><a class="nav-link" href="logout">Logout</a></li>
+				</c:if>
+				<c:if test="${sessionScope.acc == null }">
+					<li class="nav-item"><a class="nav-link" href="Login.jsp">Login</a></li>
+				</c:if>
 			</ul>
 
 			<form action="search" method="post" class="form-inline my-2 my-lg-0">

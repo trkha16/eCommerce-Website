@@ -50,7 +50,7 @@ public class RegisterControl extends HttpServlet {
 				accountDao.register(account);
 				response.sendRedirect("Login.jsp");
 			} else {
-				response.sendRedirect("Login.jsp");
+				response.sendRedirect("Register.jsp");
 			}
 
 		} catch (Exception e) {

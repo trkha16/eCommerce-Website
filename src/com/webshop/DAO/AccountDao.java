@@ -18,8 +18,8 @@ public class AccountDao {
 			+ "where username = ? and password = ?;";
 	private static final String INSERT_USERS_SQL = "INSERT INTO `product`.`account` (`username`, `password`, `name`) VALUES (?,?,?);";
 
-	public boolean checkLogin(Account account) {
-		boolean status = false;
+	public Account checkLogin(Account account) {
+		// boolean status = false;
 
 		try {
 			preparedStatement = connection.prepareStatement(CHECK_LOGIN);
@@ -28,11 +28,19 @@ public class AccountDao {
 
 			resultSet = preparedStatement.executeQuery();
 
-			status = resultSet.next();
+			while (resultSet.next()) {
+				String username = resultSet.getString("username");
+				String password = resultSet.getString("password");
+				int isSell = resultSet.getInt("isSell");
+				int isAdmin = resultSet.getInt("isAdmin");
+				String name = resultSet.getString("name");
+
+				return new Account(username, password, name, isSell, isAdmin);
+			}
 		} catch (Exception e) {
 		}
 
-		return status;
+		return null;
 	}
 
 	public int register(Account account) {

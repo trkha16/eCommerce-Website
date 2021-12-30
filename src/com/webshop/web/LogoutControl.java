@@ -1,8 +1,6 @@
 package com.webshop.web;
 
 import java.io.IOException;
-
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,20 +8,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.webshop.DAO.AccountDao;
-import com.webshop.model.Account;
-
 /**
- * Servlet implementation class LoginControl
+ * Servlet implementation class LogoutControl
  */
-@WebServlet("/login")
-public class LoginControl extends HttpServlet {
+@WebServlet("/logout")
+public class LogoutControl extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public LoginControl() {
+	public LogoutControl() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -36,26 +31,10 @@ public class LoginControl extends HttpServlet {
 			throws ServletException, IOException {
 		response.setContentType("text/html;charset=UTF-8");
 
-		AccountDao accountDao = new AccountDao();
-		Account account = new Account();
-		String username = request.getParameter("user");
-		String password = request.getParameter("pass");
-		account.setUsername(username);
-		account.setPassword(password);
+		HttpSession session = request.getSession();
+		session.removeAttribute("acc");
 
-		try {
-			if (accountDao.checkLogin(account) != null) { // Login thanh cong
-				HttpSession session = request.getSession();
-				session.setAttribute("acc", accountDao.checkLogin(account));
-
-				response.sendRedirect(request.getContextPath() + "/home");
-			} else {
-				response.sendRedirect("Login.jsp");
-			}
-
-		} catch (Exception e) {
-
-		}
+		response.sendRedirect(request.getContextPath() + "/home");
 	}
 
 	/**
