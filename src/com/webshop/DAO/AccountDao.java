@@ -29,13 +29,14 @@ public class AccountDao {
 			resultSet = preparedStatement.executeQuery();
 
 			while (resultSet.next()) {
+				int id = resultSet.getInt("id");
 				String username = resultSet.getString("username");
 				String password = resultSet.getString("password");
 				int isSell = resultSet.getInt("isSell");
 				int isAdmin = resultSet.getInt("isAdmin");
 				String name = resultSet.getString("name");
 
-				return new Account(username, password, name, isSell, isAdmin);
+				return new Account(id, username, password, name, isSell, isAdmin);
 			}
 		} catch (Exception e) {
 		}

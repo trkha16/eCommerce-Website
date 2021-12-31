@@ -19,7 +19,8 @@
 							Account</a></li>
 				</c:if>
 				<c:if test="${sessionScope.acc.isSell == 1}">
-					<li class="nav-item"><a class="nav-link" href="#">Manager
+					<li class="nav-item"><a class="nav-link"
+						href="<%=request.getContextPath()%>/managerproduct">Manager
 							Product</a></li>
 				</c:if>
 

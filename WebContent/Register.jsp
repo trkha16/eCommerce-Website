@@ -137,7 +137,7 @@ body {
 			</div>
 			<div class="form-group">
 				<input type="text" class="form-control" name="name"
-					placeholder="Username" required="required">
+					placeholder="Name" required="required">
 			</div>
 			<div class="form-group">
 				<button type="submit" class="btn btn-primary btn-lg btn-block">Sign
