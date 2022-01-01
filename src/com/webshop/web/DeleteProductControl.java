@@ -31,8 +31,10 @@ public class DeleteProductControl extends HttpServlet {
 		response.setContentType("text/html;charset=UTF-8");
 		
 		ManageProductDao dao = new ManageProductDao();
-		String id = request.getParameter("id");
+		String id = (String) request.getParameter("pid");
 		dao.deleteProductByID(id);
+		
+		response.sendRedirect(request.getContextPath() + "/managerproduct");
 	}
 
 	/**

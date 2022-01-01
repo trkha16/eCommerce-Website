@@ -43,7 +43,7 @@ public class ManageProductControl extends HttpServlet {
 		Account account = (Account) session.getAttribute("acc");
 		List<Product> list = dao.getProductBySellID(account.getId());
 
-		System.out.println(account.getId());
+		//System.out.println(account.getId());
 
 		request.setAttribute("listP", list);
 
