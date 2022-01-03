@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.webshop.DAO.AccountDao;
+import com.webshop.DAO.HomeDao;
 import com.webshop.model.Account;
 
 /**
@@ -32,6 +33,7 @@ public class RegisterControl extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		response.setContentType("text/html;charset=UTF-8");
+		request.setCharacterEncoding("UTF-8");
 
 		AccountDao accountDao = new AccountDao();
 
@@ -40,10 +42,13 @@ public class RegisterControl extends HttpServlet {
 		String rePass = request.getParameter("repass");
 		String name = request.getParameter("name");
 
+		AccountDao dao = new AccountDao();
 		Account account = new Account();
 		account.setUsername(username);
 		account.setPassword(password);
 		account.setName(name);
+
+		//System.out.println(dao.checkLogin(account).getUsername());
 
 		try {
 			if (password.equals(rePass)) {

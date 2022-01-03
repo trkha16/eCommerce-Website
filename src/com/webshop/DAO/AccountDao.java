@@ -16,7 +16,7 @@ public class AccountDao {
 
 	private static final String CHECK_LOGIN = "select * from product.account\r\n"
 			+ "where username = ? and password = ?;";
-	private static final String INSERT_USERS_SQL = "INSERT INTO `product`.`account` (`username`, `password`, `name`) VALUES (?,?,?);";
+	private static final String INSERT_USERS_SQL = "INSERT INTO product.account (username, password, name) VALUES (?,?,?);";
 
 	public Account checkLogin(Account account) {
 		// boolean status = false;
