@@ -28,11 +28,10 @@ public class ManageProductDao {
 		}
 	}
 
-	// get product by  sell_id
+	// get product by sell_id
 	public List<Product> getProductBySellID(int sellId) {
 		List<Product> list = new ArrayList<>();
-		String query = "select * from product.product\r\n" + 
-				"where sell_id = ?;";
+		String query = "select * from product.product\r\n" + "where sell_id = ?;";
 
 		try {
 			preparedStatement = connection.prepareStatement(query);
@@ -56,11 +55,35 @@ public class ManageProductDao {
 
 		return list;
 	}
-	
+
+	// Add product into sellID
+	public void addProduct(String name, String image, double price, String title, String description, int cateID,
+			int sell_ID) {
+		String query = "insert into product.product (name, image, price, title, description, cateID, sell_ID)\r\n"
+				+ "values (?,?,?,?,?,?,?);";
+		try {
+			preparedStatement = connection.prepareStatement(query);
+
+			preparedStatement.setString(1, name);
+			preparedStatement.setString(2, image);
+			preparedStatement.setDouble(3, price);
+			preparedStatement.setString(4, title);
+			preparedStatement.setString(5, description);
+			preparedStatement.setInt(6, cateID);
+			preparedStatement.setInt(7, sell_ID);
+
+			preparedStatement.executeUpdate();
+
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+
+	}
+
 	public static void main(String[] args) {
 		ManageProductDao dao = new ManageProductDao();
 		List<Product> list = dao.getProductBySellID(1);
-		for(Product o : list) {
+		for (Product o : list) {
 			System.out.println(o.getName());
 		}
 	}

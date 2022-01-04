@@ -15,19 +15,18 @@ import com.webshop.DAO.HomeDao;
 import com.webshop.DAO.ManageProductDao;
 import com.webshop.model.Account;
 import com.webshop.model.Category;
-import com.webshop.model.Product;
 
 /**
- * Servlet implementation class ManageProductControl
+ * Servlet implementation class AddProductControl
  */
-@WebServlet("/managerproduct")
-public class ManageProductControl extends HttpServlet {
+@WebServlet("/addproduct")
+public class AddProductControl extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public ManageProductControl() {
+	public AddProductControl() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -41,20 +40,22 @@ public class ManageProductControl extends HttpServlet {
 		response.setContentType("text/html;charset=UTF-8");
 		request.setCharacterEncoding("UTF-8");
 
-		ManageProductDao dao = new ManageProductDao();
-		HomeDao homeDao = new HomeDao();
+		String name = request.getParameter("name");
+		String image = request.getParameter("image");
+		double price = Double.parseDouble(request.getParameter("price"));
+		String title = request.getParameter("title");
+		String description = request.getParameter("description");
+		int cateID = Integer.parseInt(request.getParameter("category"));
 		HttpSession session = request.getSession();
-		Account account = (Account) session.getAttribute("acc");
-		List<Product> list = dao.getProductBySellID(account.getId());
-		List<Category> listC = homeDao.getAllCategories();
+		Account a = (Account) session.getAttribute("acc");
+		int sellID = a.getId();
 
-		// System.out.println(account.getId());
+		ManageProductDao dao = new ManageProductDao();
 
-		request.setAttribute("listP", list);
-		request.setAttribute("listC", listC);
+		dao.addProduct(name, image, price, title, description, cateID, sellID);
 
-		RequestDispatcher dispatcher = request.getRequestDispatcher("ManagerProduct.jsp");
-		dispatcher.forward(request, response);
+		response.sendRedirect(request.getContextPath() + "/managerproduct");
+
 	}
 
 	/**

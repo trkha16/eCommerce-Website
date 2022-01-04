@@ -101,11 +101,11 @@ img {
 			</div>
 		</div>
 	</div>
-	<!-- Edit Modal HTML -->
+	<!-- Add Modal HTML -->
 	<div id="addEmployeeModal" class="modal fade">
 		<div class="modal-dialog">
 			<div class="modal-content">
-				<form action="add" method="post">
+				<form action="addproduct" method="post">
 					<div class="modal-header">
 						<h4 class="modal-title">Add Product</h4>
 						<button type="button" class="close" data-dismiss="modal"
@@ -125,18 +125,18 @@ img {
 								class="form-control" required>
 						</div>
 						<div class="form-group">
-							<label>Title</label>
-							<textarea name="title" class="form-control" required></textarea>
+							<label>Title</label> <input name="title" type="text"
+								class="form-control" required>
 						</div>
 						<div class="form-group">
-							<label>Description</label>
-							<textarea name="description" class="form-control" required></textarea>
+							<label>Description</label> <input name="description" type="text"
+								class="form-control" required>
 						</div>
 						<div class="form-group">
 							<label>Category</label> <select name="category"
 								class="form-select" aria-label="Default select example">
 								<c:forEach items="${listC}" var="o">
-									<option value="${o.id}">${o.name}</option>
+									<option value="${o.cid}">${o.cname}</option>
 								</c:forEach>
 							</select>
 						</div>
