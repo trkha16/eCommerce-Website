@@ -47,9 +47,13 @@ public class LoginControl extends HttpServlet {
 			if (accountDao.checkLogin(account) != null) { // Login thanh cong
 				HttpSession session = request.getSession();
 				session.setAttribute("acc", accountDao.checkLogin(account));
+				session.setAttribute("loginfail", 0);
 
 				response.sendRedirect(request.getContextPath() + "/home");
 			} else {
+				HttpSession session = request.getSession();
+				session.setAttribute("loginfail", 1);
+
 				response.sendRedirect("Login.jsp");
 			}
 

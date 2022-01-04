@@ -123,6 +123,10 @@ body {
 	<div class="login-form">
 		<form action="login" method="post">
 			<h2 class="text-center">Login</h2>
+			<c:if test="${sessionScope.loginfail == 1 }">
+				<div class="alert alert-danger" role="alert">The username or
+					password is incorrect</div>
+			</c:if>
 			<div class="form-group">
 				<input type="text" class="form-control" name="user"
 					placeholder="Username" required="required">

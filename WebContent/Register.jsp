@@ -123,6 +123,14 @@ body {
 	<div class="login-form">
 		<form action="register" method="post">
 			<h2 class="text-center">Sign up</h2>
+			<c:if test="${sessionScope.usernameIsExisted == 1 }">
+				<div class="alert alert-danger" role="alert">Username already
+					exists</div>
+			</c:if>
+			<c:if test="${sessionScope.passNotMatch == 1 }">
+				<div class="alert alert-danger" role="alert">Password doesn't
+					match</div>
+			</c:if>
 			<div class="form-group">
 				<input type="text" class="form-control" name="user"
 					placeholder="Username" required="required">

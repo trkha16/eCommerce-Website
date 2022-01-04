@@ -6,6 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.webshop.DAO.AccountDao;
 import com.webshop.DAO.HomeDao;
@@ -48,10 +49,22 @@ public class RegisterControl extends HttpServlet {
 		account.setPassword(password);
 		account.setName(name);
 
-		//System.out.println(dao.checkLogin(account).getUsername());
-
 		try {
-			if (password.equals(rePass)) {
+			HttpSession session = request.getSession();
+
+			if (!password.equals(rePass)) {
+				session.setAttribute("passNotMatch", 1);
+			} else {
+				session.setAttribute("passNotMatch", 0);
+			}
+
+			if (dao.checkExistUsername(username) == true) {
+				session.setAttribute("usernameIsExisted", 1);
+			} else {
+				session.setAttribute("usernameIsExisted", 0);
+			}
+
+			if (password.equals(rePass) && dao.checkExistUsername(username) == false) {
 				accountDao.register(account);
 				response.sendRedirect("Login.jsp");
 			} else {

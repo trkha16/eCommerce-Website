@@ -59,4 +59,21 @@ public class AccountDao {
 
 		return result;
 	}
+
+	public boolean checkExistUsername(String username) {
+		String query = "select *\r\n" + "from product.account\r\n" + "where username = ?;";
+		try {
+			preparedStatement = connection.prepareStatement(query);
+			preparedStatement.setString(1, username);
+
+			resultSet = preparedStatement.executeQuery();
+
+			while (resultSet.next()) {
+				return true;
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return false;
+	}
 }
