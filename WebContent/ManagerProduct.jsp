@@ -12,7 +12,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Bootstrap CRUD Data Table for Database with Modal Form</title>
+<title>Product</title>
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
 <link rel="stylesheet"
@@ -75,7 +75,7 @@ img {
 							<td>${o.name}</td>
 							<td><img src="${o.image}"></td>
 							<td>${o.price}$</td>
-							<td><a href="#editEmployeeModal" class="edit"
+							<td><a href="editproduct1?id=${o.id }" class="edit"
 								data-toggle="modal"><i class="material-icons"
 									data-toggle="tooltip" title="Edit">&#xE254;</i></a> <a
 								href="delete?pid=${o.id}" class="delete" data-toggle="modal"><i

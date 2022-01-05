@@ -80,12 +80,33 @@ public class ManageProductDao {
 
 	}
 
-	public static void main(String[] args) {
-		ManageProductDao dao = new ManageProductDao();
-		List<Product> list = dao.getProductBySellID(1);
-		for (Product o : list) {
-			System.out.println(o.getName());
+	// Edit product by id
+	public void editProductByID(String name, String image, double price, String title, String description, int cateID,
+			String id) {
+		String query = "UPDATE product.product\r\n"
+				+ "SET name = ?, image = ?, price = ?, title = ?, description = ?, cateID = ? \r\n" + "WHERE id = ?;";
+		try {
+			preparedStatement = connection.prepareStatement(query);
+
+			preparedStatement.setString(1, name);
+			preparedStatement.setString(2, image);
+			preparedStatement.setDouble(3, price);
+			preparedStatement.setString(4, title);
+			preparedStatement.setString(5, description);
+			preparedStatement.setInt(6, cateID);
+			preparedStatement.setString(7, id);
+
+			preparedStatement.executeUpdate();
+
+		} catch (Exception e) {
+			// TODO: handle exception
 		}
 	}
 
+	public static void main(String[] args) {
+		ManageProductDao dao = new ManageProductDao();
+
+		// dao.editProductByID("2", "2", 111, "!", "2", 2, 2);
+
+	}
 }

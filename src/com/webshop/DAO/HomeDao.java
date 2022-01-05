@@ -127,6 +127,8 @@ public class HomeDao {
 			preparedStatement.setString(1, id);
 			resultSet = preparedStatement.executeQuery();
 
+			int id1 = Integer.parseInt(id);
+
 			while (resultSet.next()) {
 				String name = resultSet.getString("name");
 				String image = resultSet.getString("image");
@@ -136,7 +138,7 @@ public class HomeDao {
 				String title = resultSet.getString("title");
 				int sellID = resultSet.getInt("sell_ID");
 				int views = resultSet.getInt("views");
-				return new Product(name, image, description, price, cateID, title, sellID, views);
+				return new Product(id1, name, image, description, price, cateID, title, sellID, views);
 			}
 
 		} catch (Exception e) {
